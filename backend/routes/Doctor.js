@@ -1,13 +1,13 @@
 const router = require('express').Router();
 let Doctor = require('../models/Doctor.model');
 
-router.route('/').get((req, res) => {
+router.route('/').get((req, res) => {   //get all doctors information as json format
   Doctor.find()
     .then(Doctors => res.json(Doctors))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post((req, res) => { //expections for adding 
   const username = req.body.username;
   const description = req.body.description;
   const date = Date.parse(req.body.date);
@@ -25,7 +25,7 @@ router.route('/add').post((req, res) => {
   });
 
   newDoctor.save()
-  .then(() => res.json('Doctor added!'))
+  .then(() => res.json('Doctor added!'))    //promise
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -35,7 +35,7 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {      //any update that u want in 
   Doctor.findById(req.params.id)
     .then(Doctor => {
       Doctor.username = req.body.username;
