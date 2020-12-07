@@ -18,11 +18,11 @@ connection.once('open', () => {
     console.log("MongoDB database Connection established successfully")
 });
 
-const usersRouter= require('./routes/users');
+const usersRouter= require('./routes/users');//importing the files
 const DoctorRouter= require('./routes/Doctor.js')
 
 
-app.use('/Doctor',DoctorRouter);
+app.use('/Doctor',DoctorRouter);//using the files ,if someone calls for /Doctor then all the data in DoctorRouter will be loaded 
 app.use('/users', usersRouter);
 
 
